@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MyArrayList<T> implements MyList<T> {
     private Object[] arr;
     private int size;
@@ -63,14 +65,19 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
+        arr[0] = null;
+        size -= 1;
     }
 
     @Override
     public void removeLast() {
+        arr[size - 1] = null;
+        size -= 1;
     }
 
     @Override
     public void sort() {
+        Arrays.sort(arr, 0, size);
     }
 
     @Override
