@@ -26,12 +26,16 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void addFirst(T item) {
+        add(0, item);
     }
 
     @Override
     public void addLast(T item) {
+        add(item);
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
     public T get(int index) {
         return (T) arr[index];
     }
@@ -104,5 +108,4 @@ public class MyArrayList<T> implements MyList<T> {
     public Object[] toArray() {
         return new Object[0];
     }
-
 }
