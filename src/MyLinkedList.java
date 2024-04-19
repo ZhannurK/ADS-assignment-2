@@ -53,7 +53,15 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void set(int index, T item) {
+        if (index < 0 || index > size - 1) {
+        }
+        else {
+            MyNode<T> current = head;
+            for (int i = 0; i < index; i++)
+                current = current.next;
 
+            current.data = item;
+        }
     }
 
     @Override
@@ -117,7 +125,6 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
-
     }
 
     @Override
