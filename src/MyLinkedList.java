@@ -131,11 +131,20 @@ public class MyLinkedList<T> implements MyList<T> {
         bubbleSort(objects);
         clear();
         for(var i : objects)
-            add(i);
+            add((T) i);
     }
 
-    private void bubbleSort(T[] a) {
-
+    private void bubbleSort(Object[] objects) {
+        int temp = 0;
+        boolean swapped = false;
+        for(int i = 0; i < objects.length - 1; i++) {
+            for(int j = 0; j < objects.length - i - 1; j++) {
+                temp = (int) objects[j];
+                objects[j] = objects[j + 1];
+                objects[j + 1] = temp;
+                swapped = true;
+            }
+        }
     }
 
     @Override
@@ -168,8 +177,4 @@ public class MyLinkedList<T> implements MyList<T> {
     public int size() {
         return size;
     }
-
-
-
-
 }
