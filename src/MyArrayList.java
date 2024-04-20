@@ -99,7 +99,6 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void clear() {
-        arr = new Object[size];
         size = 0;
     }
 
