@@ -2,10 +2,14 @@ public class MyArrayList<T> implements MyList<T> {
     private Object[] arr;
     private int size;
 
-
     public MyArrayList() {
         arr = new Object[10];
         size = 0;
+    }
+
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException("index not correct");
     }
 
     @Override
@@ -73,9 +77,10 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void remove(int index) {
+        checkIndex(index);
         T element = get(index);
-        for (int i=index; i<size-1; i++) {
-            arr[i] = arr[i+1];
+        for (int i = index + 1; i < size; i++) {
+            arr[i-1] = arr[i];
         }
         size--;
     }
