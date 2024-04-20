@@ -14,7 +14,7 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public void add(Object object) {
+    public void add(T item) {
         if (size >= arr.length) {
             T[] bigger = (T[]) new Object[arr.length * 2];
             for (int i = 0; i < arr.length; i++) {
@@ -22,20 +22,20 @@ public class MyArrayList<T> implements MyList<T> {
             }
             arr = bigger;
         }
-        arr[size] = object;
+        arr[size] = item    ;
         size++;
     }
 
     @Override
-    public void add(int index, Object object) {
+    public void add(int index, T item) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
-        add(object);
+        add(item);
         for (int i = size - 1; i > index; i--) {
             arr[i] = arr[i - 1];
         }
-        arr[index] = object;
+        arr[index] = item;
     }
 
     @Override
