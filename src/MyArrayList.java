@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class MyArrayList<T> implements MyList<T> {
     private Object[] arr;
     private int size;
@@ -11,19 +9,35 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void add(Object object) {
+        if (size >= arr.length) {
+            T[] bigger = (T[]) new Object[arr.length * 2];
+            for (int i = 0; i < arr.length; i++) {
+                bigger[i] = (T) arr[i];
+            }
+            arr = bigger;
+        }
         arr[size] = object;
-        size += 1;
+        size++;
     }
 
     @Override
     public void add(int index, Object object) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        add(object);
+        for (int i = size - 1; i > index; i--) {
+            arr[i] = arr[i - 1];
+        }
         arr[index] = object;
-        size += 1;
     }
 
     @Override
     public void set(int index, T item) {
+        arr[index] = item;
+        size += 1;
     }
 
     @Override
@@ -59,8 +73,11 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void remove(int index) {
-        arr[index] = null;
-        size -= 1;
+        T element = get(index);
+        for (int i=index; i<size-1; i++) {
+            arr[i] = arr[i+1];
+        }
+        size--;
     }
 
     @Override
@@ -77,7 +94,7 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void sort() {
-        Arrays.sort(arr, 0, size);
+
     }
 
     @Override
@@ -113,6 +130,11 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] newArray = new Object[size];
+        for (int i = 0; i < size; i++) {
+            newArray[i] = arr[i];
+        }
+        return newArray;
     }
+
 }

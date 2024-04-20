@@ -3,7 +3,7 @@ public class MyLinkedList<T> implements MyList<T> {
     private MyNode<T> tail;
     private int size;
 
-    private class MyNode<E> {
+    private static class MyNode<E> {
         private E data;
         private MyNode<E> next;
         private MyNode<E> prev;
