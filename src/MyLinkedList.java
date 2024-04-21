@@ -216,12 +216,13 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public Object[] toArray() {
         Object[] newArray = new Object[size];
+        MyNode<T> current = head;
         for (int i = 0; i < size; i++) {
-            newArray[i] = head.data;
+            newArray[i] = current.data;
+            current = current.next;
         }
         return newArray;
     }
-
 
     @Override
     public void clear() {
