@@ -29,7 +29,8 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     private void makeNull(MyNode<T> a) {
-        a.next = a.prev = null;
+        a.next = null;
+        a.prev = null;
     }
 
     private void checkIndex(int index){
@@ -54,6 +55,7 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public void set(int index, T item) {
         if (index < 0 || index > size - 1) {
+            throw new IndexOutOfBoundsException();
         }
         else {
             MyNode<T> current = head;
@@ -125,43 +127,89 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
+        if (size == 0){
+            head = null;
+        }
+        else {
+            head = head.next;
+            size--;
+        }
     }
 
     @Override
     public void removeLast() {
+        if (size == 0){
+            head = null;
+        }
+        else if (size == 1) {
+            head = tail = null;
+            size = 0;
+        }
+        else {
+            MyNode<T> current = head;
 
+            for (int i = 0; i < size - 2; i++)
+                current = current.next;
+
+            tail = current;
+            tail.next = null;
+            size--;
+        }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void sort() {
         Object[] objects = toArray();
-        bubbleSort(objects);
+        boolean swapped = true;
+        while (swapped) {
+            swapped = false;
+            for (int i = 0; i < objects.length - 1; i++) {
+                if ((int) objects[i] > (int) objects[i + 1]) {
+                    Object temp = objects[i];
+                    objects[i] = objects[i + 1];
+                    objects[i + 1] = temp;
+                    swapped = true;
+                }
+            }
+        }
         clear();
-        for(var i : objects)
-            add((T) i);
+        for (Object obj : objects) {
+            add((T) obj);
+        }
     }
 
-    private void bubbleSort(Object[] objects) {
-        int temp = 0;
-        boolean swapped = false;
-        for(int i = 0; i < objects.length - 1; i++) {
-            for(int j = 0; j < objects.length - i - 1; j++) {
-                temp = (int) objects[j];
-                objects[j] = objects[j + 1];
-                objects[j + 1] = temp;
-                swapped = true;
+
+    @Override
+    public int indexOf(Object object) {
+        if (head.next == object) {
+            return 0;
+        }
+        else if (tail.next == object) {
+            return size - 1;
+        }
+        else {
+            MyNode<T> current = head;
+            int index = 0;
+            while (true) { // current != null
+                if (current.next == object)
+                    return index;
+                current = current.next;
+                index++;
             }
         }
     }
 
     @Override
-    public int indexOf(Object object) {
-        return 0;
-    }
-
-    @Override
     public int lastIndexOf(Object object) {
-        return 0;
+        int index = -1;
+        MyNode<T> current = head;
+        for (int i = 0; i < size; i++) {
+            if (current.next == object)
+                index = i;
+            current = current.next;
+        }
+        return index;
     }
 
     @Override
