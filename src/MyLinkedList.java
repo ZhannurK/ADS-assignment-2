@@ -127,8 +127,9 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
-        if (size == 0){
+        if (size == 1){
             head = null;
+            size = 0;
         }
         else {
             head = head.next;
