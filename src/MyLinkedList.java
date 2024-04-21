@@ -79,6 +79,7 @@ public class MyLinkedList<T> implements MyList<T> {
             }
             makeLink(newNode, current.next);
             makeLink(current, newNode);
+            size++;
         }
     }
 
