@@ -38,17 +38,16 @@ public class MyLinkedList<T> implements MyList<T> {
             throw new IndexOutOfBoundsException();
     }
 
-    @Override
     public void add(T item) {
         MyNode<T> newNode = new MyNode<>(item);
 
-        if(head == null) {
+        if (head == null) {
             head = newNode;
-            tail = newNode;
         }
         else{
             makeLink(tail, newNode);
         }
+        tail = newNode;
         size++;
     }
 
