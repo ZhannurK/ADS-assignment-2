@@ -138,6 +138,7 @@ public class MyLinkedList<T> implements MyList<T> {
         }
     }
 
+    @Override
     public void removeLast() {
         checkIndex(size - 1);
         if (size == 0){
@@ -156,54 +157,54 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     @SuppressWarnings("unchecked")
     public void sort() {
-        Object[] objects = toArray();
+        if (size <= 1) {
+            return;
+        }
         boolean swapped = true;
         while (swapped) {
             swapped = false;
-            for (int i = 0; i < objects.length - 1; i++) {
-                if ((int) objects[i] > (int) objects[i + 1]) {
-                    Object temp = objects[i];
-                    objects[i] = objects[i + 1];
-                    objects[i + 1] = temp;
+            MyNode<T> current = head;
+            for (int i = 0; i < size - 1; i++) {
+                if (((Comparable<T>) current.data).compareTo(current.next.data) > 0) {
+                    T temp = current.data;
+                    current.data = current.next.data;
+                    current.next.data = temp;
                     swapped = true;
                 }
+                current = current.next;
             }
-        }
-        clear();
-        for (Object obj : objects) {
-            add((T) obj);
         }
     }
 
 
     @Override
     public int indexOf(Object object) {
-        if (head.next == object) {
+        if (head.data == object) {
             return 0;
         }
-        else if (tail.next == object) {
+        else if (tail.data   == object) {
             return size - 1;
         }
         else {
             MyNode<T> current = head;
             int index = 0;
-            while (true) { // current != null
-                if (current.next == object)
+            while (current != tail) {
+                if (current.data == object)
                     return index;
                 current = current.next;
                 index++;
             }
         }
+        return -1;
     }
 
-    @Override
     public int lastIndexOf(Object object) {
         int index = -1;
-        MyNode<T> current = head;
+        MyNode<T> current = tail;
         for (int i = 0; i < size; i++) {
-            if (current.next == object)
+            if (current.data == object)
                 index = i;
-            current = current.next;
+            current = current.prev;
         }
         return index;
     }
@@ -215,8 +216,13 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] newArray = new Object[size];
+        for (int i = 0; i < size; i++) {
+            newArray[i] = head.data;
+        }
+        return newArray;
     }
+
 
     @Override
     public void clear() {
