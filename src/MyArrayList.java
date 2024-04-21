@@ -22,7 +22,7 @@ public class MyArrayList<T> implements MyList<T> {
             }
             arr = bigger;
         }
-        arr[size] = item    ;
+        arr[size] = item;
         size++;
     }
 
