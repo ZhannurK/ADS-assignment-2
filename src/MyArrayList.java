@@ -32,14 +32,16 @@ public class MyArrayList<T> implements MyList<T> {
             throw new IndexOutOfBoundsException();
         }
         add(item);
-        for (int i = size - 1; i > index; i--) {
-            arr[i] = arr[i - 1];
+        for (int i = size - 1; i >= index; i--) {
+            arr[i + 1] = arr[i];
         }
         arr[index] = item;
+        size++;
     }
 
     @Override
     public void set(int index, T item) {
+        checkIndex(index);
         arr[index] = item;
         size += 1;
     }
@@ -57,6 +59,7 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     @SuppressWarnings("unchecked")
     public T get(int index) {
+        checkIndex(index);
         return (T) arr[index];
     }
 
@@ -80,7 +83,8 @@ public class MyArrayList<T> implements MyList<T> {
         checkIndex(index);
         T element = get(index);
         for (int i = index + 1; i < size; i++) {
-            arr[i-1] = arr[i];
+            arr[i] = arr[i + 1];
+            arr[size - 1] = null;
         }
         size--;
     }
@@ -129,6 +133,11 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public boolean exists(Object object) {
+        for (int i = 0; i < size; i++) {
+            if (arr[i].equals(object)) {
+                return true;
+            }
+        }
         return false;
     }
 
