@@ -81,7 +81,6 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     public void remove(int index) {
         checkIndex(index);
-        T element = get(index);
         for (int i = index + 1; i < size; i++) {
             arr[i] = arr[i + 1];
             arr[size - 1] = null;
