@@ -127,6 +127,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
+        checkIndex(0);
         if (size == 1){
             head = null;
             size = 0;
@@ -137,8 +138,8 @@ public class MyLinkedList<T> implements MyList<T> {
         }
     }
 
-    @Override
     public void removeLast() {
+        checkIndex(size - 1);
         if (size == 0){
             head = null;
         }
@@ -147,13 +148,7 @@ public class MyLinkedList<T> implements MyList<T> {
             size = 0;
         }
         else {
-            MyNode<T> current = head;
-
-            for (int i = 0; i < size - 2; i++)
-                current = current.next;
-
-            tail = current;
-            tail.next = null;
+            tail = tail.prev;
             size--;
         }
     }
