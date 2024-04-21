@@ -176,7 +176,6 @@ public class MyLinkedList<T> implements MyList<T> {
         }
     }
 
-
     @Override
     public int indexOf(Object object) {
         if (head.data == object) {
