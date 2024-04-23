@@ -1,14 +1,14 @@
 public class Main {
+    public static void main(String[] args) {
+        testArrayList();
+        testLinkedList();
+    }
+
     public static <T> void printList(MyList<T> list) {
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }
         System.out.println();
-    }
-
-    public static void main(String[] args) {
-        testArrayList();
-        testLinkedList();
     }
 
     private static void testArrayList() {
