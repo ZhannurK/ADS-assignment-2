@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Main {
     public static <T> void printList(MyList<T> list) {
         for (int i = 0; i < list.size(); i++) {
