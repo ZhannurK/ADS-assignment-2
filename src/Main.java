@@ -28,12 +28,20 @@ public class Main {
         System.out.print("ArrayList after setting 10 at index 2: ");
         printList(arrayList);
 
-        arrayList.remove(0);
-        System.out.print("ArrayList after removing element at index 0: ");
+        arrayList.remove(2);
+        System.out.print("ArrayList after removing element at index 2: ");
         printList(arrayList);
 
         System.out.println("Index of 10: " + arrayList.indexOf(10));
         System.out.println("Does 5 exist: " + arrayList.exists(5));
+
+        arrayList.removeFirst();
+        System.out.print("ArrayList after removing first element: ");
+        printList(arrayList);
+
+        arrayList.removeLast();
+        System.out.print("ArrayList after removing last element: ");
+        printList(arrayList);
 
         arrayList.clear();
         System.out.print("ArrayList after clear: ");
