@@ -120,7 +120,18 @@ public class MyLinkedList<T> implements MyList<T> {
         for(int i = 0; i < index; i++) {
             current = current.next;
         }
-        makeLink(current.prev, current.next);
+        if (current.prev != null) {
+            current.prev.next = current.next;
+        }
+        else {
+            head = current.next;
+        }
+        if (current.next != null) {
+            current.next.prev = current.prev;
+        }
+        else {
+            tail = current.prev;
+        }
         makeNull(current);
         size--;
     }
