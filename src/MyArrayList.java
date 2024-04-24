@@ -65,12 +65,12 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public T getFirst() {
-        return null;
+        return get(0);
     }
 
     @Override
     public T getLast() {
-        return null;
+        return get(size - 1);
     }
 
     @Override
