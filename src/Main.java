@@ -2,6 +2,7 @@ public class Main {
     public static void main(String[] args) {
         testArrayList();
         testLinkedList();
+        textStack();
     }
 
     public static <T> void printList(MyList<T> list) {
@@ -9,6 +10,14 @@ public class Main {
             System.out.print(list.get(i) + " ");
         }
         System.out.println();
+    }
+
+    private static void textStack(){
+        MyStack<String> stack = new MyStack<>();
+        for (int i = 0; i < 10; i++) {
+            stack.push("" + i);
+        }
+        System.out.println(stack);
     }
 
     private static void testArrayList() {
