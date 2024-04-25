@@ -9,8 +9,8 @@ public class MyQueue<T> {
         size = 0;
     }
 
-    private class Node<T> {
-        private T data;
+    private static class Node<T> {
+        private final T data;
         private Node<T> next;
         public Node(T data) {
             this.data = data;
@@ -26,12 +26,12 @@ public class MyQueue<T> {
         Node<T> newNode = new Node<>(data);
         if (isEmpty()) {
             head = newNode;
-            tail = newNode;
+            tail= newNode;
         }
         else {
             tail.next = newNode;
-            tail = newNode;
         }
+        tail = newNode;
         size++;
     }
 
