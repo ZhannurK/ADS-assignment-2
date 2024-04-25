@@ -2,7 +2,9 @@ public class Main {
     public static void main(String[] args) {
         testArrayList();
         testLinkedList();
-        textStack();
+        testStack();
+        testQueue();
+
     }
 
     public static <T> void printList(MyList<T> list) {
@@ -12,12 +14,20 @@ public class Main {
         System.out.println();
     }
 
-    private static void textStack(){
+    private static void testStack(){
         MyStack<String> stack = new MyStack<>();
         for (int i = 0; i < 10; i++) {
             stack.push("" + i);
         }
         System.out.println(stack);
+    }
+
+    private static void testQueue(){
+        MyQueue<String> queue = new MyQueue<>();
+        for (int i = 0; i < 10; i++) {
+            queue.enqueue("" + i);
+        }
+        System.out.println(queue);
     }
 
     private static void testArrayList() {
