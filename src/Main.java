@@ -4,7 +4,6 @@ public class Main {
         testLinkedList();
         testStack();
         testQueue();
-
     }
 
     public static <T> void printList(MyList<T> list) {
