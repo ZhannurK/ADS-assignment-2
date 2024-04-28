@@ -26,7 +26,6 @@ public class MyQueue<T> {
         Node<T> newNode = new Node<>(data);
         if (isEmpty()) {
             head = newNode;
-            tail= newNode;
         }
         else {
             tail.next = newNode;
@@ -37,12 +36,18 @@ public class MyQueue<T> {
 
     public T dequeue() {
         if (isEmpty()) {
+            System.out.println("Queue is empty");
             return null;
         }
         T data = head.data;
         head = head.next;
+        if (head == null) {
+            tail = null;
+        }
+        size--;
         return data;
     }
+
 
     public T peek() {
         if (isEmpty()) {
