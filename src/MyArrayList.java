@@ -148,9 +148,7 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     public Object[] toArray() {
         Object[] newArray = new Object[size];
-        for (int i = 0; i < size; i++) {
-            newArray[i] = arr[i];
-        }
+        System.arraycopy(arr, 0, newArray, 0, size); // instead of for (int i = 0; i < size; i++) { newArray[i] = arr[i]}
         return newArray;
     }
 }
