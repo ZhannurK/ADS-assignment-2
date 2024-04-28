@@ -90,14 +90,12 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
-        arr[0] = null;
-        size -= 1;
+        remove(0);
     }
 
     @Override
     public void removeLast() {
-        arr[size - 1] = null;
-        size -= 1;
+        remove(size - 1);
     }
 
     @Override
