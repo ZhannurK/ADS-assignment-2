@@ -35,7 +35,7 @@ public class MyMinHeap<T> {
 
     public void insert(T value){
         heap.addLast(value);
-        traverseUP(size - 1);
+        traverseUP(heap.size() - 1);
     }
 
     @SuppressWarnings("unchecked")
