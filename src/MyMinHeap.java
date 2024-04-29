@@ -1,18 +1,16 @@
 public class MyMinHeap<T> {
     private final MyArrayList<T> heap;
-    private final int size;
 
-    public MyMinHeap(int size) {
+    public MyMinHeap() {
         this.heap =  new MyArrayList<>();
-        this.size = size;
     }
 
     public boolean isEmpty() {
-        return size == 0;
+        return size() == 0;
     }
 
     public int size() {
-        return size;
+        return heap.size();
     }
 
     public T getMin(){
@@ -40,17 +38,15 @@ public class MyMinHeap<T> {
 
     @SuppressWarnings("unchecked")
     private void heapify(int index){
-        if(((Comparable<T>)heap.get(rightChild(index))).compareTo(heap.get(leftChild(index))) > 0){
+        if(leftChild(index) < size() && ((Comparable<T>)heap.get(rightChild(index))).compareTo(heap.get(leftChild(index))) > 0){
             if(((Comparable<T>)heap.get(index)).compareTo(heap.get(leftChild(index))) > 0){
                 swap(index, leftChild(index));
                 heapify(leftChild(index));
             }
         }
-        else {
-            if(((Comparable<T>)heap.get(index)).compareTo(heap.get(rightChild(index))) > 0){
-                swap(index, rightChild(index));
-                heapify(rightChild(index));
-            }
+        else if(rightChild(index) < size() && ((Comparable<T>)heap.get(index)).compareTo(heap.get(rightChild(index))) > 0){
+            swap(index, rightChild(index));
+            heapify(rightChild(index));
         }
     }
 

@@ -15,7 +15,7 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     @SuppressWarnings("unchecked")
     public void add(T item) {
-        if (size >= arr.length) {
+        if (size == arr.length) {
             T[] bigger = (T[]) new Object[arr.length * 2];
             for (int i = 0; i < arr.length; i++) {
                 bigger[i] = (T) arr[i];
