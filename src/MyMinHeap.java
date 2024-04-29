@@ -44,9 +44,11 @@ public class MyMinHeap<T> {
                 heapify(leftChild(index));
             }
         }
-        else if(rightChild(index) < size() && ((Comparable<T>)heap.get(index)).compareTo(heap.get(rightChild(index))) > 0){
-            swap(index, rightChild(index));
-            heapify(rightChild(index));
+        else {
+            if(rightChild(index) < size() && ((Comparable<T>)heap.get(index)).compareTo(heap.get(rightChild(index))) > 0){
+                swap(index, rightChild(index));
+                heapify(rightChild(index));
+            }
         }
     }
 
