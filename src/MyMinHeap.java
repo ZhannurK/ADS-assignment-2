@@ -2,7 +2,7 @@ public class MyMinHeap<T> {
     private final MyArrayList<T> heap;
 
     public MyMinHeap() {
-        this.heap =  new MyArrayList<>();
+        this.heap = new MyArrayList<>();
     }
 
     public boolean isEmpty() {
@@ -38,6 +38,7 @@ public class MyMinHeap<T> {
 
     @SuppressWarnings("unchecked")
     private void heapify(int index){
+        if(index >= size())return;
         if(leftChild(index) < size() && ((Comparable<T>)heap.get(rightChild(index))).compareTo(heap.get(leftChild(index))) > 0){
             if(((Comparable<T>)heap.get(index)).compareTo(heap.get(leftChild(index))) > 0){
                 swap(index, leftChild(index));
