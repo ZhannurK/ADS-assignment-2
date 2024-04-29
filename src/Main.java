@@ -37,12 +37,6 @@ public class Main {
         stack.clearStack();
         System.out.println("Is stack empty after clear? " + stack.isEmpty());
 
-        stack.push(10);
-        stack.push(20);
-        stack.push(30);
-        System.out.println("Index of 20 in stack: " + stack.search(20));
-        System.out.println("Index of 50 in stack: " + stack.search(50));
-
         System.out.println("Popped element from empty stack: " + stack.pop());
         System.out.println("Top element from empty stack: " + stack.peek());
         System.out.println("Size of empty stack: " + stack.size());
