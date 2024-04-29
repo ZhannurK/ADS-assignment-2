@@ -1,11 +1,12 @@
 public class MyStack<T> {
     private int top;
     private final int size;
-    private T[] stack;
+    private final MyArrayList<T> stack;
 
     public MyStack() {
         top = -1;
         size = 0;
+        this.stack = new MyArrayList<>();
     }
 
     public boolean isEmpty() {
@@ -22,7 +23,7 @@ public class MyStack<T> {
             return;
         }
         top++;
-        stack[top] = item;
+        stack.add(item);
     }
 
     public T pop() {
@@ -30,7 +31,7 @@ public class MyStack<T> {
             System.out.println("Stack is empty");
             return null;
         }
-        T item = stack[top];
+        T item = stack.getLast();
         top--;
         return item;
     }
@@ -40,23 +41,10 @@ public class MyStack<T> {
             System.out.println("Stack is empty");
             return null;
         }
-        return stack[top];
+        return stack.getLast();
     }
 
     public void clearStack(){
         top = -1;
-    }
-
-    public int search(Object object) {
-        if (isEmpty()) {
-            System.out.println("Stack is empty");
-            return -1;
-        }
-        for (int i = 0; i < stack.length; i++) {
-            if (stack[i].equals(object)) {
-                return i;
-            }
-        }
-        return -1;
     }
 }
