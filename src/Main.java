@@ -4,6 +4,7 @@ public class Main {
         testLinkedList();
         testStack();
         testQueue();
+        testMinHeap();
     }
 
     public static <T> void printList(MyList<T> list) {
@@ -14,19 +15,101 @@ public class Main {
     }
 
     private static void testStack(){
-        MyStack<String> stack = new MyStack<>();
-        for (int i = 0; i < 10; i++) {
-            stack.push("" + i);
-        }
-        System.out.println(stack);
+        MyStack<Integer> stack = new MyStack<>();
+
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+        stack.push(50);
+
+        System.out.println("Top element: " + stack.peek());
+        System.out.println("Popped element: " + stack.pop());
+        System.out.println("Popped element: " + stack.pop());
+
+        stack.push(60);
+        stack.push(70);
+
+        System.out.println("Top element after pop: " + stack.peek());
+        System.out.println("Size of stack: " + stack.size());
+        System.out.println("Is stack empty? " + stack.isEmpty());
+
+        stack.clearStack();
+        System.out.println("Is stack empty after clear? " + stack.isEmpty());
+
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        System.out.println("Index of 20 in stack: " + stack.search(20));
+        System.out.println("Index of 50 in stack: " + stack.search(50));
+
+        System.out.println("Popped element from empty stack: " + stack.pop());
+        System.out.println("Top element from empty stack: " + stack.peek());
+        System.out.println("Size of empty stack: " + stack.size());
+        System.out.println("Is empty stack empty? " + stack.isEmpty());
     }
 
-    private static void testQueue(){
-        MyQueue<String> queue = new MyQueue<>();
-        for (int i = 0; i < 10; i++) {
-            queue.enqueue("" + i);
+    private static void testQueue() {
+        MyQueue<Integer> queue = new MyQueue<>();
+
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        queue.enqueue(40);
+        queue.enqueue(50);
+
+        System.out.println("Front element: " + queue.peek());
+
+        System.out.println("Dequeued element: " + queue.dequeue());
+        System.out.println("Dequeued element: " + queue.dequeue());
+
+        queue.enqueue(60);
+        queue.enqueue(70);
+
+        System.out.println("Front element after dequeue: " + queue.peek());
+
+        System.out.println("Size of queue: " + queue.size());
+        System.out.println("Is queue empty? " + queue.isEmpty());
+
+        if (!queue.isEmpty()) {
+            while (!queue.isEmpty()) {
+                System.out.println("Dequeued element: " + queue.dequeue());
+            }
+        } else {
+            System.out.println("Queue is empty. No elements to dequeue.");
         }
-        System.out.println(queue);
+
+        System.out.println("Front element from empty queue: " + queue.peek());
+        System.out.println("Size of empty queue: " + queue.size());
+        System.out.println("Is empty queue empty? " + queue.isEmpty());
+    }
+
+
+    private static void testMinHeap(){
+        MyMinHeap<Integer> minHeap = new MyMinHeap<>();
+
+        minHeap.insert(10);
+        minHeap.insert(20);
+        minHeap.insert(15);
+        minHeap.insert(30);
+        minHeap.insert(40);
+        minHeap.insert(5);
+
+        System.out.println("Extracted min: " + minHeap.extractMin());
+
+        System.out.println("Minimum element: " + minHeap.getMin());
+
+        System.out.println("Size of heap: " + minHeap.size());
+        System.out.println("Is heap empty? " + minHeap.isEmpty());
+
+        while (!minHeap.isEmpty()) {
+            System.out.println("Extracted min: " + minHeap.extractMin());
+        }
+
+        System.out.println("Extracted min from empty heap: " + minHeap.extractMin());
+        System.out.println("Minimum element from empty heap: " + minHeap.getMin());
+        System.out.println("Size of empty heap: " + minHeap.size());
+        System.out.println("Is empty heap empty? " + minHeap.isEmpty());
     }
 
     private static void testArrayList() {
